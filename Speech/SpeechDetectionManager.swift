@@ -8,7 +8,6 @@
 
 import UIKit
 import Speech
-import PromiseKit
 
 class SpeechDetectionManager: UIViewController{
     /// sharedInstance: the SpeechDetectionManager singleton
