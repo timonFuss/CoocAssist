@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
+        <attribute name="atHome" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="measurement" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="measurementUnit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="instruction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Instruction" inverseName="ingredients" inverseEntity="Instruction" syncable="YES"/>
+        <relationship name="recipe" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recipe" inverseName="ingredients" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
+    <entity name="Instruction" representedClassName="Instruction" syncable="YES" codeGenerationType="class">
+        <attribute name="context" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instruction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="posNr" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="instruction" inverseEntity="Ingredient" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeNote" inverseName="instruction" inverseEntity="RecipeNote" syncable="YES"/>
+        <relationship name="recipe" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recipe" inverseName="instructions" inverseEntity="Recipe" syncable="YES"/>
+        <relationship name="timer" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="RecipeTimer" inverseName="instruction" inverseEntity="RecipeTimer" syncable="YES"/>
+    </entity>
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cookingTime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recipeImage" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient" syncable="YES"/>
+        <relationship name="instructions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Instruction" inverseName="recipe" inverseEntity="Instruction" syncable="YES"/>
+    </entity>
+    <entity name="RecipeNote" representedClassName="RecipeNote" syncable="YES" codeGenerationType="class">
+        <attribute name="finishMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="instruction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instruction" inverseName="note" inverseEntity="Instruction" syncable="YES"/>
+    </entity>
+    <entity name="RecipeTimer" representedClassName="RecipeTimer" syncable="YES" codeGenerationType="class">
+        <attribute name="amountOfInstr" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="finishMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="instruction" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Instruction" inverseName="timer" inverseEntity="Instruction" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Ingredient" positionX="-3198.2421875" positionY="-3078.0859375" width="128" height="150"/>
+        <element name="Instruction" positionX="-3168.81640625" positionY="-2896.45703125" width="128" height="163"/>
+        <element name="Recipe" positionX="-3420.07421875" positionY="-3077.87890625" width="128" height="133"/>
+        <element name="RecipeTimer" positionX="-3419.72265625" positionY="-2819.171875" width="128" height="118"/>
+        <element name="RecipeNote" positionX="-3415.6015625" positionY="-2672.83984375" width="128" height="88"/>
+    </elements>
+</model>
